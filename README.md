@@ -1,2 +1,5 @@
 # Direct-Market-Access
-A scalable blockchain-integrated platform enabling direct market access. Future enhancements will explore AI and IoT integration to boost market prediction accuracy and operational efficiency.
+Developed a web application that empowers farmers by allowing them 
+to directly sell their products to users.
+ A unique feature is the Transporter Account, allowing part-timers to assist
+farmers in transporting goods to customers and earn income.
