@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-07-01T04:49:08.926Z",
+  "version": "1.0.0",
+  "backend": "https://incredible-beauty-production-f2fe.up.railway.app",
+  "files": [
+    "index.html",
+    "js",
+    "netlify.toml",
+    "styles",
+    "_redirects"
+  ],
+  "status": "ready"
+}
