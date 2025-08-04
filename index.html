@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AgriToday - Connecting Farmers, Buyers, and Transporters">
+    <meta name="keywords" content="agriculture, farming, marketplace, organic food, fresh produce">
+    <title>AgriToday - Agricultural Marketplace</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Pay API -->
+    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Razorpay Checkout -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p data-translate="loading">Loading...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">AT</div>
+                <span class="brand-text">AgriToday</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link" data-translate="home">Home</a>
+                <a href="#products" class="nav-link" data-translate="products">Products</a>
+                <a href="#about" class="nav-link" data-translate="about">About</a>
+                <a href="#contact" class="nav-link" data-translate="contact">Contact</a>
+                
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <select id="language-selector" class="language-select">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+                
+                <!-- Authentication Links -->
+                <div class="auth-links" id="auth-links">
+                    <a href="#login" class="btn btn-outline" data-translate="login">Login</a>
+                    <a href="#register" class="btn btn-primary" data-translate="register">Register</a>
+                </div>
+                
+                <!-- User Menu (hidden by default) -->
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <div class="user-avatar" id="user-avatar">
+                        <img src="/images/default-avatar.png" alt="User" class="avatar-img">
+                        <span class="user-name" id="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="#dashboard" class="dropdown-item" data-translate="dashboard">Dashboard</a>
+                        <a href="#profile" class="dropdown-item" data-translate="profile">Profile</a>
+                        <a href="#subscription" class="dropdown-item" data-translate="subscription">Subscription</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#logout" class="dropdown-item" data-translate="logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-translate="hero-title">
+                        Welcome to AgriToday
+                    </h1>
+                    <p class="hero-subtitle" data-translate="hero-subtitle">
+                        Connecting Farmers, Buyers, and Transporters for a Better Agricultural Future
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" data-translate="get-started">
+                            Get Started
+                        </button>
+                        <button class="btn btn-outline btn-large" data-translate="learn-more">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-img">AgriToday</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title" data-translate="features-title">
+                    Our Features
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3 data-translate="farmer-feature-title">For Farmers</h3>
+                        <p data-translate="farmer-feature-desc">
+                            Register your crops, list produce, and manage orders efficiently
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 data-translate="buyer-feature-title">For Buyers</h3>
+                        <p data-translate="buyer-feature-desc">
+                            Browse fresh produce, buy directly from farmers, and request transport
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 data-translate="transporter-feature-title">For Transporters</h3>
+                        <p data-translate="transporter-feature-desc">
+                            Register as delivery partner and accept transportation jobs
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 data-translate="secure-feature-title">Secure Platform</h3>
+                        <p data-translate="secure-feature-desc">
+                            Safe transactions with integrated payment gateway and verified users
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Section -->
+        <section id="subscription-info" class="subscription-section">
+            <div class="container">
+                <div class="subscription-content">
+                    <h2 class="section-title" data-translate="subscription-title">
+                        Simple Pricing
+                    </h2>
+                    <div class="subscription-card">
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">49</span>
+                            <span class="period" data-translate="per-month">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li data-translate="feature-dashboard">Access to role-specific dashboard</li>
+                            <li data-translate="feature-transactions">Unlimited transactions</li>
+                            <li data-translate="feature-support">24/7 customer support</li>
+                            <li data-translate="feature-analytics">Basic analytics and reports</li>
+                        </ul>
+                        <button class="btn btn-primary btn-large subscribe-btn" data-translate="subscribe-now">
+                            Subscribe Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <div class="footer-logo">AT</div>
+                            <span class="brand-text">AgriToday</span>
+                        </div>
+                        <p class="footer-desc" data-translate="footer-desc">
+                            Empowering agriculture through technology and connecting the farming community.
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4 data-translate="quick-links">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home" data-translate="home">Home</a></li>
+                            <li><a href="#about" data-translate="about">About</a></li>
+                            <li><a href="#contact" data-translate="contact">Contact</a></li>
+                            <li><a href="#privacy" data-translate="privacy">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4 data-translate="contact-us">Contact Us</h4>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span>info@agritoday.com</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <span>+91 6381672467</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 AgriToday. <span data-translate="rights-reserved">All rights reserved.</span></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="login">Login</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email" data-translate="email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" data-translate="password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" data-translate="login">
+                        Login
+                    </button>
+                </form>
+                <div class="auth-links">
+                    <a href="#forgot-password" data-translate="forgot-password">Forgot Password?</a>
+                    <p>
+                        <span data-translate="no-account">Don't have an account?</span>
+                        <a href="#register" data-translate="register">Register</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="register">Register</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-name" data-translate="name">Full Name</label>
+                        <input type="text" id="register-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email" data-translate="email">Email</label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone" data-translate="phone">Phone Number</label>
+                        <input type="tel" id="register-phone" name="phone" pattern="[6-9][0-9]{9}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password" data-translate="password">Password</label>
+                        <input type="password" id="register-password" name="password" minlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-role" data-translate="role">Role</label>
+                        <select id="register-role" name="role" required>
+                            <option value="" data-translate="select-role">Select your role</option>
+                            <option value="farmer" data-translate="farmer">Farmer</option>
+                            <option value="buyer" data-translate="buyer">Buyer</option>
+                            <option value="transporter" data-translate="transporter">Transporter</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" data-translate="register">
+                        Register
+                    </button>
+                </form>
+                <div class="auth-links">
+                    <p>
+                        <span data-translate="have-account">Already have an account?</span>
+                        <a href="#login" data-translate="login">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Modal -->
+    <div id="subscription-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="subscription">Subscription Required</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="subscription-info">
+                    <h3 data-translate="subscription-required">Subscription Required</h3>
+                    <p data-translate="subscription-message">
+                        To access role-specific features, you need an active subscription.
+                    </p>
+                    <div class="subscription-price">
+                        <span class="currency">₹</span>
+                        <span class="amount">49</span>
+                        <span class="period" data-translate="per-month">/month</span>
+                    </div>
+                    <button id="pay-subscription" class="btn btn-primary btn-full" data-translate="pay-now">
+                        Pay Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="/js/translations.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/payments.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
